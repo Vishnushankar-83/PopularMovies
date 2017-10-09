@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.vanajainfotech.popularmovies.MovieDetailActivity">
+    tools:context="com.app.vanajainfotech.popularmovies.MovieDetailActivity" android:padding="10dp">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"  android:layout_margin="23dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -62,7 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextTitle"/>
-
         <TextView
             android:id="@+id/movie_overview"
             android:layout_marginStart="8dp"

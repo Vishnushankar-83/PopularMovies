@@ -10,8 +10,8 @@
             android:id="@+id/gridview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:numColumns="2"
-            android:clickable="true"/>
+            android:numColumns="auto_fit"
+            android:clickable="true"   android:verticalSpacing="3dp" android:horizontalSpacing="3dp" android:columnWidth="100dp"/>
 
         <TextView
             android:id="@+id/error_text"

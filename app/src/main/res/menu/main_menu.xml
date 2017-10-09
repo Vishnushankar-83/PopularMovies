@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item android:id="@+id/sort_by_popular"
-        android:title="@string/popular_menu_title"
-        android:visible="false"
-        app:showAsAction="never"/>
+        android:title="@string/popular_menu_title"/>
     <item android:id="@+id/sort_by_average"
-        android:title="@string/average_menu_title"
-        app:showAsAction="never"/>
+        android:title="@string/average_menu_title"  />
+
 </menu>

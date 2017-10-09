@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private MovieAdapter mAdapter;
     private Menu mainMenu;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState == null){
             requestMoviesBy("popular");
+
         } else {
             gridData = savedInstanceState.getParcelableArrayList("savedMovies");
             mAdapter = new MovieAdapter(this, 0, gridData);
@@ -81,6 +83,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList("savedMovies", gridData);
         super.onSaveInstanceState(outState);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.sort_by_popular:
+              //  mainMenu.findItem(R.id.sort_by_average).setVisible(true);
+               // mainMenu.findItem(R.id.sort_by_popular).setVisible(false);
+                gridData = new ArrayList<>();
+                requestMoviesBy("popular");
+                return true;
+            case R.id.sort_by_average:
+               // mainMenu.findItem(R.id.sort_by_average).setVisible(false);
+               // mainMenu.findItem(R.id.sort_by_popular).setVisible(true);
+                gridData = new ArrayList<>();
+                requestMoviesBy("top_rated");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -116,39 +148,10 @@ public class MainActivity extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        mainMenu = menu;
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.sort_by_popular:
-                mainMenu.findItem(R.id.sort_by_average).setVisible(true);
-                mainMenu.findItem(R.id.sort_by_popular).setVisible(false);
-                gridData = new ArrayList<>();
-                requestMoviesBy("popular");
-                return true;
-            case R.id.sort_by_average:
-                mainMenu.findItem(R.id.sort_by_average).setVisible(false);
-                mainMenu.findItem(R.id.sort_by_popular).setVisible(true);
-                gridData = new ArrayList<>();
-                requestMoviesBy("top_rated");
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
 
 
     public class MovieQueryTask extends AsyncTask<URL, Void, String> {
-
-
 
         @Override
         protected void onPreExecute() {
