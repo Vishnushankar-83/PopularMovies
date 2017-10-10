@@ -23,6 +23,10 @@ public class MovieDetailActivity extends AppCompatActivity {
     TextView movieDate;
     TextView movieAverage;
 
+    /**
+     * The method is used to create and populate the movie details screen.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

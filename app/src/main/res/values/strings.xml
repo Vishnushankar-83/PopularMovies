@@ -1,4 +1,5 @@
 <resources>
+    <!-- All Strings in the app are present here -->
     <string name="app_name">Popular Movies</string>
     <string name="error_message">Error in API connection</string>
     <string name="popular_menu_title">popular</string>

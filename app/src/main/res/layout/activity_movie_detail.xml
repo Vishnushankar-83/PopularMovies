@@ -8,13 +8,11 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="200dp">
-
             <ImageView
                 android:id="@+id/movie_thumbnail"
                 android:layout_width="0dp"
@@ -22,39 +20,32 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/image_name"
                 android:layout_weight="1"/>
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"  android:layout_margin="23dp">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextTitle"
                     android:text="@string/release_date"/>
-
                 <TextView
                     android:id="@+id/movie_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextTitle"
                     android:text="@string/vote_average"/>
-
                 <TextView
                     android:id="@+id/movie_average"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-
         </LinearLayout>
-
         <TextView
             android:id="@+id/movie_title"
             android:layout_marginStart="8dp"
@@ -68,7 +59,6 @@
             android:layout_marginEnd="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
 </ScrollView>
 

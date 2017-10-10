@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.vanajainfotech.popularmovies">
 
+    <!-- Added for internet and network access permission for an app-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -15,11 +16,9 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MovieDetailActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -27,5 +26,4 @@
                 android:value=".MainActivity" />
         </activity>
     </application>
-
 </manifest>

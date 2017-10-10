@@ -28,6 +28,8 @@ import java.util.ArrayList;
 
 
 /**
+ * The Main Activity is  a main class for the popular movie APP. Help to create and populate the movie list.
+ *
  * Created by vishnushankar on 10/07/17
  *
  *
@@ -41,33 +43,29 @@ public class MainActivity extends AppCompatActivity {
     private MovieAdapter mAdapter;
     private Menu mainMenu;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    /**
+     * The method used to create and populate the grid data in popular movie app.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         gridview = (GridView) findViewById(R.id.gridview);
-
         errorTextView = (TextView) findViewById(R.id.error_text);
         loadingIndicator = (ProgressBar) findViewById(R.id.loading_indicator);
-
         gridData = new ArrayList<>();
-
         mAdapter = new MovieAdapter(this, 0, gridData);
         gridview.setAdapter(mAdapter);
 
-
-
         if(savedInstanceState == null){
             requestMoviesBy("popular");
-
         } else {
             gridData = savedInstanceState.getParcelableArrayList("savedMovies");
             mAdapter = new MovieAdapter(this, 0, gridData);
             gridview.setAdapter(mAdapter);
         }
-
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -79,13 +77,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * The method invoked when the activity may be temporarily destroyed, save
+     * the instance state here .
+     *
+     * @param outState
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList("savedMovies", gridData);
         super.onSaveInstanceState(outState);
     }
 
-
+    /**
+     * The method used to create menu in app.
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -93,20 +102,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    /**
+     * The method used to create menu options list in app.
+     *
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.sort_by_popular:
-              //  mainMenu.findItem(R.id.sort_by_average).setVisible(true);
-               // mainMenu.findItem(R.id.sort_by_popular).setVisible(false);
                 gridData = new ArrayList<>();
                 requestMoviesBy("popular");
                 return true;
             case R.id.sort_by_average:
-               // mainMenu.findItem(R.id.sort_by_average).setVisible(false);
-               // mainMenu.findItem(R.id.sort_by_popular).setVisible(true);
                 gridData = new ArrayList<>();
                 requestMoviesBy("top_rated");
                 return true;
@@ -115,7 +123,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    /**
+     *
+     * @param sortBy
+     */
     private void requestMoviesBy(String sortBy) {
         if (isNetworkAvailable()){
             URL movieSearchUrl = NetworkUtils.buildUrl(sortBy);
@@ -126,6 +137,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * The method used to show JSON data view
+     */
     private void showJsonDataView() {
         // First, make sure the error is invisible
         errorTextView.setVisibility(View.INVISIBLE);
@@ -149,7 +164,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     *  The class is used to query movie task .
+     */
 
     public class MovieQueryTask extends AsyncTask<URL, Void, String> {
 
@@ -185,6 +202,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * The method used to parse the result for popular movies.
+     *
+     * @param results
+     */
     private void parseResult(String results){
         try {
 
